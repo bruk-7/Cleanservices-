@@ -3,172 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ሜሽ | የላቀ የሶፋ እና የቤት ዕቃዎች ፅዳት</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Noto+Sans+Ethiopic:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>MEASH | የላቀ የፅዳት ጥበብ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Noto+Sans+Ethiopic:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #c5a059; --dark: #0a0a0a; --white: #ffffff; --gray: #f9f9f9; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans Ethiopic', sans-serif; background: var(--white); color: var(--dark); scroll-behavior: smooth; }
-        
-        /* 1. Navigation */
-        nav { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 2px; }
+        :root { --gold: #D4AF37; --dark: #0f0f0f; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Custom cursor active */
+        body { font-family: 'Noto Sans Ethiopic', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
 
-        /* 6. VIDEO HERO BACKGROUND */
-        .hero { height: 75vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.5; background: #000; }
-        .hero-content h1 { font-family: 'Noto Sans Ethiopic', sans-serif; font-size: clamp(35px, 7vw, 60px); line-height: 1.2; margin-bottom: 15px; }
-        .hero-content p { color: var(--gold); letter-spacing: 3px; font-weight: bold; text-transform: uppercase; }
+        /* Custom Cursor */
+        #cursor { width: 20px; height: 20px; border: 2px solid var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: transform 0.1s ease; }
+        #cursor-follower { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; }
 
-        .section { padding: 80px 8%; }
-        .section-title { text-align: center; font-size: 35px; margin-bottom: 40px; border-bottom: 2px solid var(--gold); display: table; margin-left: auto; margin-right: auto; padding-bottom: 5px; }
+        /* Glass Nav */
+        nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); letter-spacing: 4px; font-style: italic; }
 
-        /* 2. CATEGORIES (The 8 Specific Services) */
-        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .cat-box { background: var(--gray); padding: 35px; border-radius: 12px; border: 1px solid #eee; transition: 0.3s; }
-        .cat-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .cat-box h3 { color: var(--gold); margin-bottom: 20px; font-size: 26px; }
-        .service-list { list-style: none; font-size: 16px; }
-        .service-list li { margin-bottom: 12px; display: flex; align-items: center; }
-        .service-list li::before { content: "✨"; margin-right: 12px; color: var(--gold); font-size: 14px; }
+        /* Hero Section */
+        .hero { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000'); background-size: cover; background-position: center; }
+        .hero-content h1 { font-size: clamp(40px, 10vw, 85px); font-family: 'Cormorant Garamond', serif; font-style: italic; margin-bottom: 20px; line-height: 1; }
+        .hero-content p { color: var(--gold); letter-spacing: 5px; font-weight: bold; text-transform: uppercase; font-size: 14px; }
 
-        /* 3. GALLERY (4 PICS - 2 Before/2 After) */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
-        .gal-card { height: 320px; position: relative; border-radius: 8px; overflow: hidden; border: 2px solid var(--gold); }
-        .gal-card img { width: 100%; height: 100%; object-fit: cover; }
-        .label { position: absolute; top: 10px; left: 10px; background: var(--gold); color: white; padding: 6px 14px; font-size: 11px; font-weight: bold; border-radius: 4px; z-index: 10; }
+        .section { padding: 100px 10%; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 45px; color: var(--gold); margin-bottom: 50px; text-align: center; }
 
-        /* 4. VISION & VALUES */
-        .vision-section { background: var(--dark); color: white; border-top: 4px solid var(--gold); }
-        .vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 30px; }
-        .vision-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 22px; }
-        .vision-item p { font-size: 15px; opacity: 0.8; line-height: 1.6; }
+        /* Category Cards Glassmorphism */
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .cat-box { background: var(--glass); padding: 40px; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; transition: 0.5s; position: relative; overflow: hidden; }
+        .cat-box:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); transform: translateY(-10px); }
+        .cat-box h3 { font-size: 28px; margin-bottom: 20px; color: var(--gold); }
+        .service-list { list-style: none; }
+        .service-list li { margin-bottom: 12px; opacity: 0.8; display: flex; align-items: center; }
+        .service-list li::before { content: "◈"; margin-right: 15px; color: var(--gold); }
 
-        /* 5. FAQ (ተዘውታሪ ጥያቄዎች) */
-        .faq-box { max-width: 800px; margin: 0 auto; }
-        details { padding: 20px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s; }
-        details:hover { background: var(--gray); }
-        summary { font-weight: 700; font-size: 18px; color: var(--dark); list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        summary::after { content: "+"; color: var(--gold); font-size: 20px; }
-        details[open] summary::after { content: "-"; }
-        details p { padding-top: 15px; font-size: 16px; color: #555; }
+        /* Gallery Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .gal-card { height: 400px; border-radius: 15px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,0.1); }
+        .gal-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; }
+        .gal-card:hover img { transform: scale(1.1); }
+        .label { position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); color: var(--gold); padding: 8px 20px; font-size: 12px; font-weight: bold; border: 1px solid var(--gold); border-radius: 50px; }
 
-        /* SOCIAL POPUP (WhatsApp, Telegram, FB, IG) */
-        .fab-trigger { position: fixed; bottom: 30px; right: 30px; background: var(--gold); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .social-menu { position: fixed; bottom: 105px; right: 35px; display: none; flex-direction: column; gap: 15px; z-index: 999; }
-        .social-menu a { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .active { display: flex; }
-        
-        footer { padding: 50px; text-align: center; background: #000; color: #555; font-size: 12px; }
+        /* FAQ Accordion */
+        .faq-box { max-width: 900px; margin: 0 auto; }
+        details { background: var(--glass); margin-bottom: 15px; border-radius: 10px; padding: 10px; border: 1px solid rgba(255,255,255,0.05); }
+        summary { padding: 15px; font-weight: bold; color: var(--gold); cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
+        details p { padding: 15px; opacity: 0.7; font-size: 15px; line-height: 1.8; }
+
+        /* FAB Button */
+        .fab { position: fixed; bottom: 40px; right: 40px; background: var(--gold); color: var(--dark); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 2000; transition: 0.3s; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+        .fab:hover { transform: scale(1.1) rotate(15deg); }
+
+        footer { text-align: center; padding: 60px; border-top: 1px solid var(--glass); color: #444; font-size: 12px; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">MEASH (ሜሽ)</div>
-    <div style="font-size: 12px; font-weight: bold; color: var(--gold); letter-spacing: 1px;">አያት አደባባይ | አዲስ አበባ</div>
-</nav>
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
 
-<header class="hero">
-    <video autoplay muted loop playsinline>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-cleaning-a-sofa-with-a-vacuum-cleaner-42792-large.mp4" type="video/mp4">
-    </video>
-    <div class="hero-content">
-        <p>የላቀ ጥራት • ዘመናዊ ፅዳት</p>
-        <h1>የቤትዎ ውበት <br> ኦሪጅናል ገጽታውን እንዲይዝ</h1>
-    </div>
-</header>
+    <nav>
+        <div class="logo">MEASH</div>
+        <div style="font-size: 10px; letter-spacing: 3px; color: var(--gold);">EST. 2026</div>
+    </nav>
 
-<section class="section" id="services">
-    <h2 class="section-title">አገልግሎቶቻችን</h2>
-    <div class="cat-grid">
-        <div class="cat-box">
-            <h3>የቤት እና የወለል ፅዳት</h3>
-            <ul class="service-list">
-                <li>ጠቅላላ የምንጣፍ ፅዳት</li>
-                <li>የሳሎን ምንጣፍ (Area Rug)</li>
-                <li>የመጋረጃዎች ፅዳት (Drapes)</li>
-            </ul>
+    <header class="hero">
+        <div class="hero-content">
+            <p>Premium Sanitization</p>
+            <h1>የላቀ ጥበብ <br> ንፁህ ህይወት</h1>
         </div>
-        <div class="cat-box">
-            <h3>የቤት ዕቃዎች ፅዳት</h3>
-            <ul class="service-list">
-                <li>የሶፋ ጥልቅ ፅዳት</li>
-                <li>የምግብ ጠረጴዛ ወንበሮች</li>
-                <li>ባህላዊ መጅሊሶች</li>
-                <li>የፍራሽ (Mattress) ፅዳት</li>
-            </ul>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">አገልግሎቶቻችን</h2>
+        <div class="cat-grid">
+            <div class="cat-box">
+                <h3>የቤት ውስጥ ፅዳት</h3>
+                <ul class="service-list">
+                    <li>ምንጣፍ እና ምንጣፍ ፅዳት</li>
+                    <li>የመስኮት መጋረጃዎች</li>
+                    <li>ፍራሽ እና አልጋዎች</li>
+                </ul>
+            </div>
+            <div class="cat-box">
+                <h3>የቤት ዕቃዎች</h3>
+                <ul class="service-list">
+                    <li>የሶፋ ጥልቅ ፅዳት</li>
+                    <li>ባህላዊ መጅሊሶች</li>
+                    <li>የምግብ ጠረጴዛዎች</li>
+                </ul>
+            </div>
+            <div class="cat-box">
+                <h3>ተሽከርካሪዎች</h3>
+                <ul class="service-list">
+                    <li>የመኪና ወንበሮች</li>
+                    <li>የውስጥ አካላት እድሳት</li>
+                </ul>
+            </div>
         </div>
-        <div class="cat-box">
-            <h3>ተጨማሪ አገልግሎቶች</h3>
-            <ul class="service-list">
-                <li>የመኪና ወንበሮች (Car Seats)</li>
-                <li>የቢሮ ወንበሮች እና የቆዳ ወንበሮች</li>
-            </ul>
+    </section>
+
+    <section class="section" style="background: #050505;">
+        <h2 class="section-title">ውጤቶቻችን</h2>
+        <div class="gallery-grid">
+            <div class="gal-card"><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"><span class="label">SOFA RESTORED</span></div>
+            <div class="gal-card"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800"><span class="label">HYGIENE FOCUS</span></div>
+            <div class="gal-card"><img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=800"><span class="label">DEEP CLEAN</span></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section" style="background: var(--gray);" id="gallery">
-    <h2 class="section-title">የስራዎቻችን ውጤት (Gallery)</h2>
-    <div class="gallery-grid">
-        <div class="gal-card"><span class="label">ከፅዳት በፊት</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800" style="filter: brightness(0.4) saturate(0.5);"></div>
-        <div class="gal-card"><span class="label">ከፅዳት በኋላ</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"></div>
-        <div class="gal-card"><span class="label">ከፅዳት በፊት</span><img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=800" style="filter: grayscale(1) brightness(0.5);"></div>
-        <div class="gal-card"><span class="label">ከፅዳት በኋላ</span><img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=800"></div>
-    </div>
-</section>
-
-<section class="section vision-section">
-    <h2 class="section-title" style="color: white; border-color: var(--gold);">ራዕይ እና ተልዕኳችን</h2>
-    <div class="vision-grid">
-        <div class="vision-item">
-            <h4>ራዕያችን (Vision)</h4>
-            <p>በኢትዮጵያ ውስጥ ቀዳሚው እና በዘመናዊ ቴክኖሎጂ የታገዘ የቤት እቃዎች እድሳት እና ፅዳት ድርጅት መሆን።</p>
+    <section class="section">
+        <h2 class="section-title">ተዘውታሪ ጥያቄዎች</h2>
+        <div class="faq-box">
+            <details><summary>ለማድረቅ ምን ያህል ጊዜ ይፈጃል? <span>+</span></summary><p>በዘመናዊ ማሽኖቻችን ስለምንጠቀም እንደ አየሩ ሁኔታ ከ2 እስከ 4 ሰዓት ባለው ጊዜ ውስጥ ሙሉ በሙሉ ይደርቃል።</p></details>
+            <details><summary>ቤታችን ድረስ ትመጣላችሁ? <span>+</span></summary><p>አዎ! አያት፣ ሲኤምሲ፣ ቦሌ እና ማንኛውም አዲስ አበባ ውስጥ ባሉበት ቦታ መጥተን አገልግሎት እንሰጣለን።</p></details>
         </div>
-        <div class="vision-item">
-            <h4>ተልዕኳችን (Mission)</h4>
-            <p>ለንብረትዎ ከፍተኛ ጥንቃቄ በማድረግ፣ ኦሪጅናል ውበቱን እና ጥራቱን ጠብቆ እንዲቆይ የሚያደርግ የፅዳት አገልግሎት መስጠት።</p>
-        </div>
-        <div class="vision-item">
-            <h4>እሴቶቻችን (Values)</h4>
-            <p>ታማኝነት፣ ግልፅነት፣ እና የደንበኞቻችንን ጤና እና እርካታ ቅድሚያ መስጠት መሰረታዊ መርሀችን ነው።</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="section">
-    <h2 class="section-title">ተዘውታሪ ጥያቄዎች (FAQ)</h2>
-    <div class="faq-box">
-        <details>
-            <summary>ለማድረቅ ምን ያህል ጊዜ ይፈጃል?</summary>
-            <p>በዘመናዊ ማሽኖቻችን ስለምንጠቀም እንደ አየሩ ሁኔታ ከ2 እስከ 4 ሰዓት ባለው ጊዜ ውስጥ ሙሉ በሙሉ ይደርቃል።</p>
-        </details>
-        <details>
-            <summary>ቤታችን ድረስ ትመጣላችሁ?</summary>
-            <p>አዎ! አያት፣ ሲኤምሲ፣ ቦሌ እና ማንኛውም አዲስ አበባ ውስጥ ባሉበት ቦታ መጥተን አገልግሎት እንሰጣለን።</p>
-        </details>
-        <details>
-            <summary>ክፍያ እንዴት ነው የምንፈፅመው?</summary>
-            <p>ስራውን ሰርተን ከጨረስን በኋላ በጥሬ ገንዘብ ወይም በባንክ ማስተላለፍ (Telebirr/CBE) መቀበል እንችላለን።</p>
-        </details>
-    </div>
-</section>
+    <div class="fab">💬</div>
 
-<div class="fab-trigger" onclick="toggleSocial()">💬</div>
-<div class="social-menu" id="sm-menu">
-    <a href="https://wa.me/2519..." style="background: #25d366;">WA</a> <a href="https://t.me/yourid" style="background: #0088cc;">TG</a> <a href="#" style="background: #1877f2;">FB</a> <a href="#" style="background: #e4405f;">IG</a> </div>
+    <footer>
+        &copy; 2026 MEASH PRESTIGE CLEANING | ADDIS ABABA, ETHIOPIA
+    </footer>
 
-<script>
-    function toggleSocial() {
-        document.getElementById('sm-menu').classList.toggle('active');
-    }
-</script>
-
-<footer>
-    <p style="margin-bottom: 10px; color: var(--gold);">MEASH SOFA CLEANING SERVICE</p>
-    <p>&copy; 2026 መብቱ በህግ የተጠበቀ ነው | አዲስ አበባ</p>
-</footer>
-
+    <script>
+        const cursor = document.querySelector('#cursor');
+        const follower = document.querySelector('#cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            follower.style.left = e.clientX + 'px';
+            follower.style.top = e.clientY + 'px';
+        });
+    </script>
 </body>
 </html>
