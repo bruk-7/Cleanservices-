@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meash | Premium Sofa Care Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #c5a059; --dark: #121212; --light: #f8f9fa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #fff; color: var(--dark); }
+
+        /* Navigation */
+        nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; background: #fff; z-index: 100; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: bold; letter-spacing: 2px; color: var(--gold); }
+
+        /* Hero */
+        .hero { padding: 100px 5%; text-align: center; background: var(--light); border-bottom: 5px solid var(--gold); }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 8vw, 65px); line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 14px; letter-spacing: 4px; text-transform: uppercase; color: #666; margin-bottom: 30px; }
+        .btn { display: inline-block; padding: 15px 40px; background: var(--dark); color: #fff; text-decoration: none; font-size: 12px; letter-spacing: 2px; font-weight: 600; }
+
+        /* Before & After Concept Section */
+        .demo-section { padding: 80px 5%; text-align: center; }
+        .comparison-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 40px; }
+        .comp-box { width: 45%; min-width: 300px; border: 1px solid #eee; border-radius: 10px; overflow: hidden; }
+        .comp-label { padding: 10px; background: var(--gold); color: white; font-size: 12px; font-weight: bold; }
+        .comp-img { height: 250px; background-size: cover; background-position: center; }
+
+        /* Service List */
+        .services { padding: 80px 5%; background: var(--dark); color: white; }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .s-card { border-left: 2px solid var(--gold); padding-left: 20px; text-align: left; }
+        .s-card h3 { color: var(--gold); margin-bottom: 10px; }
+        .s-card p { font-size: 13px; opacity: 0.8; }
+
+        /* Floating Contact */
+        .whatsapp { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.2); font-weight: bold; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MEASH CARE</div>
+        <div style="font-size: 12px; font-weight: 600;">AYAT SQUARE, ADDIS</div>
+    </nav>
+
+    <header class="hero">
+        <p>Premium Sofa Sanitization</p>
+        <h1>Your Luxury Furniture <br> Deserves Expert Care</h1>
+        <a href="#contact" class="btn">BOOK AN INSPECTION</a>
+    </header>
+
+    <section class="demo-section">
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 35px;">The Meash Transformation</h2>
+        <p style="color: #888;">Real results from our latest projects in Addis.</p>
+        
+        <div class="comparison-container">
+            <div class="comp-box">
+                <div class="comp-label">BEFORE</div>
+                <div class="comp-img" style="background-image: url('https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800'); filter: grayscale(1) contrast(0.5);"></div>
+            </div>
+            <div class="comp-box">
+                <div class="comp-label">AFTER</div>
+                <div class="comp-img" style="background-image: url('https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800');"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <p style="color: var(--gold); letter-spacing: 3px;">EXPERTISE</p>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 35px; margin-bottom: 40px;">Specialized Material Care</h2>
+        
+        <div class="service-grid">
+            <div class="s-card">
+                <h3>Leather Polishing</h3>
+                <p>Gentle deep-cleaning and premium wax conditioning for executive sofas.</p>
+            </div>
+            <div class="s-card">
+                <h3>Velvet Revival</h3>
+                <p>Low-moisture steam to restore the soft texture without water damage.</p>
+            </div>
+            <div class="s-card">
+                <h3>Fabric Protect</h3>
+                <p>Applying an invisible shield to prevent future spills and stains.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 50px; text-align: center; font-size: 12px; background: #eee;">
+        <p>MEASH SOFA CLEANING • 5-STAR SERVICE • ADDIS ABABA</p>
+    </footer>
+
+    <a href="https://wa.me/2519..." class="whatsapp">WhatsApp Quote</a>
+
+</body>
+</html>
