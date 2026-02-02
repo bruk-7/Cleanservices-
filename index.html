@@ -14,16 +14,27 @@
         nav { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 2px; }
 
-        /* 6. VIDEO HERO BACKGROUND */
-        .hero { height: 75vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.5; background: #000; }
+        /* HERO WITH HIGH-END HOME IMAGE */
+        .hero { 
+            height: 75vh; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: white; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
         .hero-content h1 { font-family: 'Noto Sans Ethiopic', sans-serif; font-size: clamp(35px, 7vw, 60px); line-height: 1.2; margin-bottom: 15px; }
         .hero-content p { color: var(--gold); letter-spacing: 3px; font-weight: bold; text-transform: uppercase; }
 
         .section { padding: 80px 8%; }
         .section-title { text-align: center; font-size: 35px; margin-bottom: 40px; border-bottom: 2px solid var(--gold); display: table; margin-left: auto; margin-right: auto; padding-bottom: 5px; }
 
-        /* 2. CATEGORIES (The 8 Specific Services) */
+        /* 2. CATEGORIES */
         .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .cat-box { background: var(--gray); padding: 35px; border-radius: 12px; border: 1px solid #eee; transition: 0.3s; }
         .cat-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
@@ -32,7 +43,7 @@
         .service-list li { margin-bottom: 12px; display: flex; align-items: center; }
         .service-list li::before { content: "✨"; margin-right: 12px; color: var(--gold); font-size: 14px; }
 
-        /* 3. GALLERY (4 PICS - 2 Before/2 After) */
+        /* 3. GALLERY */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
         .gal-card { height: 320px; position: relative; border-radius: 8px; overflow: hidden; border: 2px solid var(--gold); }
         .gal-card img { width: 100%; height: 100%; object-fit: cover; }
@@ -44,7 +55,7 @@
         .vision-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 22px; }
         .vision-item p { font-size: 15px; opacity: 0.8; line-height: 1.6; }
 
-        /* 5. FAQ (ተዘውታሪ ጥያቄዎች) */
+        /* 5. FAQ */
         .faq-box { max-width: 800px; margin: 0 auto; }
         details { padding: 20px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s; }
         details:hover { background: var(--gray); }
@@ -53,11 +64,11 @@
         details[open] summary::after { content: "-"; }
         details p { padding-top: 15px; font-size: 16px; color: #555; }
 
-        /* SOCIAL POPUP (WhatsApp, Telegram, FB, IG) */
+        /* SOCIAL POPUP */
         .fab-trigger { position: fixed; bottom: 30px; right: 30px; background: var(--gold); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
         .social-menu { position: fixed; bottom: 105px; right: 35px; display: none; flex-direction: column; gap: 15px; z-index: 999; }
         .social-menu a { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .active { display: flex; }
+        .social-menu.active { display: flex !important; }
         
         footer { padding: 50px; text-align: center; background: #000; color: #555; font-size: 12px; }
     </style>
@@ -70,9 +81,6 @@
 </nav>
 
 <header class="hero">
-    <video autoplay muted loop playsinline>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-cleaning-a-sofa-with-a-vacuum-cleaner-42792-large.mp4" type="video/mp4">
-    </video>
     <div class="hero-content">
         <p>የላቀ ጥራት • ዘመናዊ ፅዳት</p>
         <h1>የቤትዎ ውበት <br> ኦሪጅናል ገጽታውን እንዲይዝ</h1>
@@ -157,7 +165,11 @@
 
 <div class="fab-trigger" onclick="toggleSocial()">💬</div>
 <div class="social-menu" id="sm-menu">
-    <a href="https://wa.me/2519..." style="background: #25d366;">WA</a> <a href="https://t.me/yourid" style="background: #0088cc;">TG</a> <a href="#" style="background: #1877f2;">FB</a> <a href="#" style="background: #e4405f;">IG</a> </div>
+    <a href="https://wa.me/2519..." style="background: #25d366;">WA</a> 
+    <a href="https://t.me/yourid" style="background: #0088cc;">TG</a> 
+    <a href="#" style="background: #1877f2;">FB</a> 
+    <a href="#" style="background: #e4405f;">IG</a> 
+</div>
 
 <script>
     function toggleSocial() {
