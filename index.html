@@ -3,73 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ሜሽ | የሶፋ እና የቤት ዕቃዎች ጥልቅ ፅዳት</title>
+    <title>ሜሽ | የላቀ የሶፋ እና የቤት ዕቃዎች ፅዳት</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Noto+Sans+Ethiopic:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #c5a059; --dark: #0a0a0a; --white: #ffffff; --gray: #f9f9f9; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Noto Sans Ethiopic', sans-serif; background: var(--white); color: var(--dark); scroll-behavior: smooth; }
-        h1, h2, h3 { font-family: 'Noto Sans Ethiopic', sans-serif; font-weight: 700; }
-
-        /* Nav */
-        nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 24px; font-weight: bold; color: var(--gold); letter-spacing: 2px; }
-
-        /* Hero */
-        .hero { height: 70vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1500'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        .hero h1 { font-size: clamp(35px, 8vw, 60px); line-height: 1.3; margin-bottom: 10px; }
-        .hero p { font-size: 18px; color: var(--gold); letter-spacing: 2px; }
-
-        /* Categories Section */
-        .section { padding: 80px 8%; }
-        .section-title { text-align: center; font-size: 38px; margin-bottom: 50px; color: var(--dark); border-bottom: 3px solid var(--gold); display: table; margin-left: auto; margin-right: auto; padding-bottom: 10px; }
         
-        .cat-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .cat-box { background: var(--gray); padding: 35px; border-radius: 15px; border: 1px solid #eee; transition: 0.3s; }
-        .cat-box:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
-        .cat-box h3 { color: var(--gold); font-size: 26px; margin-bottom: 20px; }
-        .service-list { list-style: none; }
-        .service-list li { margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; }
-        .service-list li::before { content: "✨"; margin-right: 12px; font-size: 14px; }
+        /* 1. Navigation */
+        nav { padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; background: #fff; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 2px; }
 
-        /* Before/After Gallery */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .gal-card { position: relative; border-radius: 10px; overflow: hidden; height: 320px; border: 2px solid var(--gold); }
+        /* 6. VIDEO HERO BACKGROUND */
+        .hero { height: 75vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
+        .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0.5; background: #000; }
+        .hero-content h1 { font-family: 'Noto Sans Ethiopic', sans-serif; font-size: clamp(35px, 7vw, 60px); line-height: 1.2; margin-bottom: 15px; }
+        .hero-content p { color: var(--gold); letter-spacing: 3px; font-weight: bold; text-transform: uppercase; }
+
+        .section { padding: 80px 8%; }
+        .section-title { text-align: center; font-size: 35px; margin-bottom: 40px; border-bottom: 2px solid var(--gold); display: table; margin-left: auto; margin-right: auto; padding-bottom: 5px; }
+
+        /* 2. CATEGORIES (The 8 Specific Services) */
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .cat-box { background: var(--gray); padding: 35px; border-radius: 12px; border: 1px solid #eee; transition: 0.3s; }
+        .cat-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .cat-box h3 { color: var(--gold); margin-bottom: 20px; font-size: 26px; }
+        .service-list { list-style: none; font-size: 16px; }
+        .service-list li { margin-bottom: 12px; display: flex; align-items: center; }
+        .service-list li::before { content: "✨"; margin-right: 12px; color: var(--gold); font-size: 14px; }
+
+        /* 3. GALLERY (4 PICS - 2 Before/2 After) */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+        .gal-card { height: 320px; position: relative; border-radius: 8px; overflow: hidden; border: 2px solid var(--gold); }
         .gal-card img { width: 100%; height: 100%; object-fit: cover; }
-        .label { position: absolute; top: 15px; left: 15px; background: var(--gold); color: white; padding: 6px 14px; font-size: 12px; font-weight: bold; border-radius: 4px; z-index: 10; }
+        .label { position: absolute; top: 10px; left: 10px; background: var(--gold); color: white; padding: 6px 14px; font-size: 11px; font-weight: bold; border-radius: 4px; z-index: 10; }
 
-        /* Social Popup */
-        .fab-trigger { position: fixed; bottom: 30px; right: 30px; background: var(--gold); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.2); z-index: 999; }
-        .fab-menu { position: fixed; bottom: 105px; right: 35px; display: none; flex-direction: column; gap: 15px; z-index: 998; }
-        .fab-menu a { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; text-align: center; line-height: 1; }
+        /* 4. VISION & VALUES */
+        .vision-section { background: var(--dark); color: white; border-top: 4px solid var(--gold); }
+        .vision-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 30px; }
+        .vision-item h4 { color: var(--gold); margin-bottom: 15px; font-size: 22px; }
+        .vision-item p { font-size: 15px; opacity: 0.8; line-height: 1.6; }
+
+        /* 5. FAQ (ተዘውታሪ ጥያቄዎች) */
+        .faq-box { max-width: 800px; margin: 0 auto; }
+        details { padding: 20px; border-bottom: 1px solid #eee; cursor: pointer; transition: 0.3s; }
+        details:hover { background: var(--gray); }
+        summary { font-weight: 700; font-size: 18px; color: var(--dark); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::after { content: "+"; color: var(--gold); font-size: 20px; }
+        details[open] summary::after { content: "-"; }
+        details p { padding-top: 15px; font-size: 16px; color: #555; }
+
+        /* SOCIAL POPUP (WhatsApp, Telegram, FB, IG) */
+        .fab-trigger { position: fixed; bottom: 30px; right: 30px; background: var(--gold); color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; z-index: 1000; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .social-menu { position: fixed; bottom: 105px; right: 35px; display: none; flex-direction: column; gap: 15px; z-index: 999; }
+        .social-menu a { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .active { display: flex; }
         
-        footer { padding: 40px; text-align: center; background: var(--dark); color: white; margin-top: 50px; }
+        footer { padding: 50px; text-align: center; background: #000; color: #555; font-size: 12px; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">ሜሽ (MEASH)</div>
-    <div style="font-size: 14px; font-weight: 600; color: var(--gold);">አያት አደባባይ | አዲስ አበባ</div>
+    <div class="logo">MEASH (ሜሽ)</div>
+    <div style="font-size: 12px; font-weight: bold; color: var(--gold); letter-spacing: 1px;">አያት አደባባይ | አዲስ አበባ</div>
 </nav>
 
 <header class="hero">
-    <div>
-        <p>የፅዳት ጥበብ መምህር</p>
-        <h1>ለቤትዎ እና ለቢሮዎ <br> አዲስ ውበት እንሰጣለን</h1>
+    <video autoplay muted loop playsinline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-cleaning-a-sofa-with-a-vacuum-cleaner-42792-large.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+        <p>የላቀ ጥራት • ዘመናዊ ፅዳት</p>
+        <h1>የቤትዎ ውበት <br> ኦሪጅናል ገጽታውን እንዲይዝ</h1>
     </div>
 </header>
 
-<section class="section">
-    <h2 class="section-title">የአገልግሎት ዘርፎች</h2>
-    <div class="cat-container">
+<section class="section" id="services">
+    <h2 class="section-title">አገልግሎቶቻችን</h2>
+    <div class="cat-grid">
         <div class="cat-box">
             <h3>የቤት እና የወለል ፅዳት</h3>
             <ul class="service-list">
-                <li>ጠቅላላ ምንጣፍ ፅዳት</li>
-                <li>የሳሎን ምንጣፎች (Area Rugs)</li>
-                <li>የመስኮት መጋረጃዎች</li>
+                <li>ጠቅላላ የምንጣፍ ፅዳት</li>
+                <li>የሳሎን ምንጣፍ (Area Rug)</li>
+                <li>የመጋረጃዎች ፅዳት (Drapes)</li>
             </ul>
         </div>
         <div class="cat-box">
@@ -82,54 +100,74 @@
             </ul>
         </div>
         <div class="cat-box">
-            <h3>የመኪና ፅዳት</h3>
+            <h3>ተጨማሪ አገልግሎቶች</h3>
             <ul class="service-list">
                 <li>የመኪና ወንበሮች (Car Seats)</li>
-                <li>የውስጥ አካላት ፅዳት</li>
+                <li>የቢሮ ወንበሮች እና የቆዳ ወንበሮች</li>
             </ul>
         </div>
     </div>
 </section>
 
-<section class="section" style="background: var(--dark); color: white;">
-    <h2 class="section-title" style="color: white;">የስራዎቻችን ውጤት</h2>
+<section class="section" style="background: var(--gray);" id="gallery">
+    <h2 class="section-title">የስራዎቻችን ውጤት (Gallery)</h2>
     <div class="gallery-grid">
-        <div class="gal-card">
-            <span class="label">ሶፋ: ከፅዳት በፊት</span>
-            <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800" style="filter: brightness(0.4) saturate(0.5);">
+        <div class="gal-card"><span class="label">ከፅዳት በፊት</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800" style="filter: brightness(0.4) saturate(0.5);"></div>
+        <div class="gal-card"><span class="label">ከፅዳት በኋላ</span><img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800"></div>
+        <div class="gal-card"><span class="label">ከፅዳት በፊት</span><img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=800" style="filter: grayscale(1) brightness(0.5);"></div>
+        <div class="gal-card"><span class="label">ከፅዳት በኋላ</span><img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=800"></div>
+    </div>
+</section>
+
+<section class="section vision-section">
+    <h2 class="section-title" style="color: white; border-color: var(--gold);">ራዕይ እና ተልዕኳችን</h2>
+    <div class="vision-grid">
+        <div class="vision-item">
+            <h4>ራዕያችን (Vision)</h4>
+            <p>በኢትዮጵያ ውስጥ ቀዳሚው እና በዘመናዊ ቴክኖሎጂ የታገዘ የቤት እቃዎች እድሳት እና ፅዳት ድርጅት መሆን።</p>
         </div>
-        <div class="gal-card">
-            <span class="label">ሶፋ: ከፅዳት በኋላ</span>
-            <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800">
+        <div class="vision-item">
+            <h4>ተልዕኳችን (Mission)</h4>
+            <p>ለንብረትዎ ከፍተኛ ጥንቃቄ በማድረግ፣ ኦሪጅናል ውበቱን እና ጥራቱን ጠብቆ እንዲቆይ የሚያደርግ የፅዳት አገልግሎት መስጠት።</p>
         </div>
-        <div class="gal-card">
-            <span class="label">ምንጣፍ: ከፅዳት በፊት</span>
-            <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=800" style="filter: grayscale(1) brightness(0.5);">
-        </div>
-        <div class="gal-card">
-            <span class="label">ምንጣፍ: ከፅዳት በኋላ</span>
-            <img src="https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=800">
+        <div class="vision-item">
+            <h4>እሴቶቻችን (Values)</h4>
+            <p>ታማኝነት፣ ግልፅነት፣ እና የደንበኞቻችንን ጤና እና እርካታ ቅድሚያ መስጠት መሰረታዊ መርሀችን ነው።</p>
         </div>
     </div>
 </section>
 
-<div class="fab-trigger" onclick="toggleFab()">💬</div>
-<div class="fab-menu" id="fab-menu">
-    <a href="#" style="background: #25d366;">ዋትሳፕ</a>
-    <a href="#" style="background: #0088cc;">ቴሌግራም</a>
-    <a href="#" style="background: #1877f2;">ፌስቡክ</a>
-    <a href="#" style="background: #e4405f;">ኢንስታግራም</a>
-</div>
+<section class="section">
+    <h2 class="section-title">ተዘውታሪ ጥያቄዎች (FAQ)</h2>
+    <div class="faq-box">
+        <details>
+            <summary>ለማድረቅ ምን ያህል ጊዜ ይፈጃል?</summary>
+            <p>በዘመናዊ ማሽኖቻችን ስለምንጠቀም እንደ አየሩ ሁኔታ ከ2 እስከ 4 ሰዓት ባለው ጊዜ ውስጥ ሙሉ በሙሉ ይደርቃል።</p>
+        </details>
+        <details>
+            <summary>ቤታችን ድረስ ትመጣላችሁ?</summary>
+            <p>አዎ! አያት፣ ሲኤምሲ፣ ቦሌ እና ማንኛውም አዲስ አበባ ውስጥ ባሉበት ቦታ መጥተን አገልግሎት እንሰጣለን።</p>
+        </details>
+        <details>
+            <summary>ክፍያ እንዴት ነው የምንፈፅመው?</summary>
+            <p>ስራውን ሰርተን ከጨረስን በኋላ በጥሬ ገንዘብ ወይም በባንክ ማስተላለፍ (Telebirr/CBE) መቀበል እንችላለን።</p>
+        </details>
+    </div>
+</section>
+
+<div class="fab-trigger" onclick="toggleSocial()">💬</div>
+<div class="social-menu" id="sm-menu">
+    <a href="https://wa.me/2519..." style="background: #25d366;">WA</a> <a href="https://t.me/yourid" style="background: #0088cc;">TG</a> <a href="#" style="background: #1877f2;">FB</a> <a href="#" style="background: #e4405f;">IG</a> </div>
 
 <script>
-    function toggleFab() {
-        document.getElementById('fab-menu').classList.toggle('active');
+    function toggleSocial() {
+        document.getElementById('sm-menu').classList.toggle('active');
     }
 </script>
 
 <footer>
-    <p style="margin-bottom: 10px;">ሜሽ የሶፋ እና የቤት ዕቃዎች ፅዳት አገልግሎት</p>
-    <p style="font-size: 12px; opacity: 0.7;">&copy; 2026 መብቱ በህግ የተጠበቀ ነው | አዲስ አበባ</p>
+    <p style="margin-bottom: 10px; color: var(--gold);">MEASH SOFA CLEANING SERVICE</p>
+    <p>&copy; 2026 መብቱ በህግ የተጠበቀ ነው | አዲስ አበባ</p>
 </footer>
 
 </body>
